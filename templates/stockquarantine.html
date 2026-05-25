@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quarantine Section
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">🗑️</span>
+            <h2 class="page-guide-title">Stock Quarantine</h2>
+        </div>
+        <p class="page-guide-desc">This section holds expired drugs that have been moved out of active stock. Items here are no longer available for dispensing — they are pending safe disposal. Once a drug has been physically disposed of, remove it from this list to keep your quarantine record clean.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Expired From</span>
+                <span class="tip-text">Shows how many days ago the drug expired — useful for prioritizing disposal of the oldest items first.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Remove</span>
+                <span class="tip-text">Only click Remove after the drug has been physically disposed of. This action permanently deletes the record and cannot be undone.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">How Items Arrive Here</span>
+                <span class="tip-text">Drugs are moved to quarantine from the <a href="/expired">Expired Drugs</a> page. They do not appear here automatically — someone must explicitly transfer them.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Expired from</th>
+                <th>Remove Completely</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td> {{ drug.drug }} </td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_passed }}</td>
+                <td><form action="/stockquarantine" method="post">
+                    <input value="{{drug.id}}" type="hidden" name = "quarantine_drug_id">
+                    <button class="btn btn-primary" type="submit">Remove</button>
+                </form></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

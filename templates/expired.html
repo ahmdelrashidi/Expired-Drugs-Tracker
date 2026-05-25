@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expired
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">❌</span>
+            <h2 class="page-guide-title">Expired Drugs</h2>
+        </div>
+        <p class="page-guide-desc">This page lists all drugs in your inventory that have passed their expiry date. These items must not be dispensed. Review this list regularly and move expired drugs to quarantine so they can be tracked until physically disposed of.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Expired From</span>
+                <span class="tip-text">Shows how many days ago the drug expired. Drugs that have been expired longest should be prioritized for quarantine transfer.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Remove to Quarantine</span>
+                <span class="tip-text">Clicking Remove moves the drug out of active stock and into the quarantine log. The drug is not deleted — it remains traceable until physically disposed of.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">After Quarantine</span>
+                <span class="tip-text">Once moved, the drug will appear in <a href="/stockquarantine">Stock Quarantine</a> where it can be permanently removed after safe disposal.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Expired from</th>
+                <th>Remove to Quarantine</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td> {{ drug.drug }} </td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_from }}</td>
+                <td><form action="/expired" method="post">
+                    <input value="{{drug.id}}" type="hidden" name = "removed_drug_id">
+                    <button class="btn btn-primary" type="submit">Remove</button>
+                </form></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

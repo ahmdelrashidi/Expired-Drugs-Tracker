@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stockintake
+{% endblock %}
+
+{% block page_title %}
+    Stock Intake
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">📥</span>
+            <h2 class="page-guide-title">Stock Intake</h2>
+        </div>
+        <p class="page-guide-desc">Use this form to add new drugs to your inventory. Each entry records the drug name, available quantity, and expiry date so the system can track and alert you before it expires.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Drug Name</span>
+                <span class="tip-text">Include the unit in the name for clarity — e.g. <em>Paracetamol 500mg</em> or <em>Amoxicillin 250mg/5ml</em>.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Quantity</span>
+                <span class="tip-text">Enter the number of units, strips, or bottles — whatever unit you track per batch.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Expiry Date</span>
+                <span class="tip-text">Drugs expiring within 30 days will be flagged immediately. Drugs already expired will not be accepted.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <form action="/stockintake" method="post">
+        <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="drugname" placeholder="Drug name" type="text">
+            </td>
+            <td>
+                <input autocomplete="off" class="form-control mx-auto w-auto" name="quantity" placeholder="Quantity" type="text">
+            </td>
+            <td>
+                <input autocomplete="off" class="form-control mx-auto w-auto" name="expiry" placeholder="DD/MM/YYYY" type="date">
+            </td>
+            <td>
+                <button class="btn btn-primary" type="submit">ADD</button>
+            </td>
+        </tr>
+    </table>
+
+    </form>
+{% endblock %}

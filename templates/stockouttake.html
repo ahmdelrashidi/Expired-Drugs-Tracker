@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block page_title %}
+    Stock Outtake
+{% endblock %}
+
+{% block explanation %}
+<div class="text-start mb-3">
+    <h6 class="mb-1">Remove drugs from your stock</h6>
+    <p class="mb-1">
+        Select a drug from your inventory and enter the quantity to reduce it.
+    </p>
+    <p class="text-muted mb-0">
+        Usage: choose drug → enter quantity → click <strong>Sell</strong>.
+    </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">📤</span>
+            <h2 class="page-guide-title">Stock Outtake</h2>
+        </div>
+        <p class="page-guide-desc">Use this form to record drugs leaving your inventory — whether dispensed, sold, or used. Selecting a drug and entering a quantity will reduce your stock count accordingly. If the full quantity is consumed, the entry is removed automatically.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Drug Selection</span>
+                <span class="tip-text">The dropdown shows all drugs currently in stock along with their expiry dates — so you can confirm you're dispensing the right batch.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Quantity</span>
+                <span class="tip-text">Enter only the amount being removed now. You cannot remove more than the quantity currently recorded in stock.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Expired Drugs</span>
+                <span class="tip-text">Expired drugs cannot be processed here. Go to <a href="/expired">Expired Drugs</a> to move them to quarantine first.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <form action="/stockouttake" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Drug Name and Expiry Date</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td><select name="id" class="form-select mx-auto w-auto">
+                    <option value="" disabled selected>Drug Name, Unit and expiry date</option>
+                    {% for drug in drugs %}
+                        <option value="{{ drug.id }}">{{ drug.drug }} Expiry Date is {{ drug.expiry_date }}</option>
+                    {% endfor %}
+                </select></td>
+
+                <td><input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="quantity" placeholder="Quantity" type="number"></td>
+            <td><button class="btn btn-primary" type="submit">Sell</button></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sixmonths
+{% endblock %}
+
+{% block page_title %}
+    Expiring Within 6 Months
+{% endblock %}
+
+{% block explanation %}
+<div class="text-start mb-3">
+    <h6 class="mb-1">Medium-term expiry view</h6>
+    <p class="mb-1">
+        Shows drugs that will expire within the next 6 months.
+    </p>
+    <p class="text-muted mb-0">
+        Usage: plan stock and avoid over-purchasing.
+    </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">🗓️</span>
+            <h2 class="page-guide-title">Expiring Within 3 to 6 Months</h2>
+        </div>
+        <p class="page-guide-desc">This list shows drugs with between 3 and 6 months remaining before expiry. These are not urgent yet, but monitoring them now gives you time to plan purchasing decisions and avoid building excess stock that will expire before it can be used.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">What to do</span>
+                <span class="tip-text">Review consumption rates against quantities shown. If stock is high relative to usage, pause reordering this drug until the count comes down.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Days Left</span>
+                <span class="tip-text">The list is sorted by days remaining — drugs closest to the 3-month threshold appear first so your attention goes to the most time-sensitive items.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Next Steps</span>
+                <span class="tip-text">Drugs that cross into the 3-month window will appear in <a href="/threemonths">From 3 Months to 1 Month</a>. Check that list regularly as expiry approaches.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+        <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Days left</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td> {{ drug.drug }} </td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_left }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

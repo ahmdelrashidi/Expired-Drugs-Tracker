@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    onemonth
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">⚠️</span>
+            <h2 class="page-guide-title">Expiring Within 1 Month</h2>
+        </div>
+        <p class="page-guide-desc">These drugs expire within the next 30 days. This is the critical window — any item on this list needs immediate attention, whether that means prioritizing dispensing or preparing to move it to quarantine once it expires.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Days Left</span>
+                <span class="tip-text">Sorted by days remaining — the most urgent items appear at the top. Check this list daily.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Quantity</span>
+                <span class="tip-text">If quantity is high and days left are few, it is unlikely to be fully dispensed in time. Flag it now rather than after expiry.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Next Step</span>
+                <span class="tip-text">Once a drug reaches day 0, it will appear in <a href="/expired">Expired Drugs</a> where you can move it to quarantine for safe disposal.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Days left</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td>{{ drug.drug }}</td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_left }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

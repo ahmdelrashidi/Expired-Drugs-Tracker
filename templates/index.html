@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">🏠</span>
+            <h2 class="page-guide-title">Your Stock Overview</h2>
+        </div>
+        <p class="page-guide-desc">This is your main inventory dashboard. It shows all non-expired drugs currently in stock, sorted by days remaining so the most time-sensitive items are always at the top. Use this page as your daily starting point.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Days Left</span>
+                <span class="tip-text">Sorted ascending — drugs closest to expiry appear first. Review the top of the list daily.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Adding Stock</span>
+                <span class="tip-text">To add new drugs or restock existing ones, go to <a href="/stockintake">Stock Intake</a>.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Dispensing Stock</span>
+                <span class="tip-text">To record drugs leaving inventory, go to <a href="/stockouttake">Stock Outtake</a>.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Expired Items</span>
+                <span class="tip-text">Expired drugs do not appear here. Find them under <a href="/expired">Expired Drugs</a> and move them to quarantine.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Days left</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td>{{ drug.drug }}</td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_left }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

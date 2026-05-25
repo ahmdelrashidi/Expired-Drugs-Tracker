@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block main %}
+
+    <div class="about-hero">
+        <span class="about-hero-icon">💊</span>
+        <h1 class="about-hero-title">PharmaTrack</h1>
+        <p class="about-hero-subtitle">A pharmacy inventory system built to prevent expired drugs from reaching patients.</p>
+    </div>
+
+    <div class="about-section">
+        <h2 class="about-section-title">What is PharmaTrack?</h2>
+        <p class="about-section-text">PharmaTrack is a web-based inventory management tool designed for pharmacies and medical stockrooms. It tracks every drug in your inventory by name, quantity, and expiry date — and gives you clear visibility into what is expiring soon, what has already expired, and what needs to be disposed of safely.</p>
+        <p class="about-section-text">The goal is simple: no expired drug should be dispensed to a patient because it was overlooked in a crowded stockroom.</p>
+    </div>
+
+    <div class="about-section">
+        <h2 class="about-section-title">How It Works</h2>
+        <div class="about-steps">
+            <div class="about-step">
+                <span class="about-step-number">1</span>
+                <div class="about-step-content">
+                    <span class="about-step-title">Add your stock</span>
+                    <span class="about-step-text">Use Stock Intake to register every drug with its quantity and expiry date. Drugs expiring within 30 days are flagged immediately. Already-expired drugs are rejected at entry.</span>
+                </div>
+            </div>
+            <div class="about-step">
+                <span class="about-step-number">2</span>
+                <div class="about-step-content">
+                    <span class="about-step-title">Monitor expiry windows</span>
+                    <span class="about-step-text">Three expiry views — 6 months, 3 months, and 1 month — let you catch approaching expiry early and adjust dispensing or purchasing decisions before it becomes a problem.</span>
+                </div>
+            </div>
+            <div class="about-step">
+                <span class="about-step-number">3</span>
+                <div class="about-step-content">
+                    <span class="about-step-title">Record dispensing</span>
+                    <span class="about-step-text">Use Stock Outtake to reduce quantities as drugs are dispensed or sold. When a drug runs out completely, it is removed from inventory automatically.</span>
+                </div>
+            </div>
+            <div class="about-step">
+                <span class="about-step-number">4</span>
+                <div class="about-step-content">
+                    <span class="about-step-title">Handle expired drugs</span>
+                    <span class="about-step-text">Expired drugs are flagged in the Expired Drugs page. From there, move them to Stock Quarantine — a holding log for items awaiting safe physical disposal. Once disposed, remove them permanently from the system.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2 class="about-section-title">Pages at a Glance</h2>
+        <div class="about-pages">
+            <div class="about-page-row">
+                <span class="about-page-icon">🏠</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Home</span>
+                    <span class="about-page-desc">Full inventory overview, sorted by days until expiry.</span>
+                </div>
+            </div>
+            <div class="about-page-row">
+                <span class="about-page-icon">📥</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Stock Intake</span>
+                    <span class="about-page-desc">Add new drugs or new batches to your inventory.</span>
+                </div>
+            </div>
+            <div class="about-page-row">
+                <span class="about-page-icon">📤</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Stock Outtake</span>
+                    <span class="about-page-desc">Record drugs being dispensed and reduce stock counts.</span>
+                </div>
+            </div>
+            <div class="about-page-row">
+                <span class="about-page-icon">🗓️</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Expiry Windows</span>
+                    <span class="about-page-desc">Three tiered views — 6 months, 3 months, 1 month — for proactive expiry management.</span>
+                </div>
+            </div>
+            <div class="about-page-row">
+                <span class="about-page-icon">❌</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Expired Drugs</span>
+                    <span class="about-page-desc">Lists all drugs past their expiry date. Transfer them to quarantine from here.</span>
+                </div>
+            </div>
+            <div class="about-page-row">
+                <span class="about-page-icon">🗑️</span>
+                <div class="about-page-info">
+                    <span class="about-page-name">Stock Quarantine</span>
+                    <span class="about-page-desc">Holds expired drugs awaiting physical disposal. Remove entries after confirmed disposal.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-footer-note">
+        <p>PharmaTrack &copy; 2026 &mdash; Built as a CS50 final project. Dedicated to safe medication management.</p>
+    </div>
+
+{% endblock %}

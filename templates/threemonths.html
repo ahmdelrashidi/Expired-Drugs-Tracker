@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    threemonths
+{% endblock %}
+
+{% block main %}
+
+    <!-- PAGE GUIDE - new content -->
+    <div class="page-guide">
+        <div class="page-guide-header">
+            <span class="page-guide-icon">🕐</span>
+            <h2 class="page-guide-title">Expiring Within 1 to 3 Months</h2>
+        </div>
+        <p class="page-guide-desc">These drugs have between 1 and 3 months remaining before expiry. This is the action window — prioritize dispensing these items and avoid reordering until quantities come down.</p>
+        <div class="page-guide-tips">
+            <div class="page-guide-tip">
+                <span class="tip-label">Days Left</span>
+                <span class="tip-text">Sorted by days remaining — most urgent entries appear first.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Quantity</span>
+                <span class="tip-text">Cross-reference with your dispensing rate. High quantity with low time remaining is a direct waste risk.</span>
+            </div>
+            <div class="page-guide-tip">
+                <span class="tip-label">Next Threshold</span>
+                <span class="tip-text">Drugs crossing into the final 30 days will appear in <a href="/onemonth">1 Month list</a> — check it regularly.</span>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE GUIDE -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Drug Name and Unit</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Days left</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drug in drugs %}
+            <tr>
+                <td>{{ drug.drug }}</td>
+                <td>{{ drug.quantity }}</td>
+                <td>{{ drug.expiry_date }}</td>
+                <td>{{ drug.days_left }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
